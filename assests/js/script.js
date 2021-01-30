@@ -18,9 +18,8 @@ function getWeather() {
         console.log(response)
 
         var responseContainerEl = document.querySelector("#temp-text");
-        responseContainerEl.innerHTML= "<h2>" + searchTerm + "</h2>";
 
-        document.querySelector('#temp-text').innerHTML = response.main.temp;
+        document.querySelector('#temp-text').innerHTML = '<h2>' + response.main.temp + ' C </h2>';
 
 
         //responseContainerEl.appendChild(getTempText);
