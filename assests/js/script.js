@@ -24,7 +24,7 @@ function getWeather() {
         var responseContainerEl = document.querySelector("#city-name");
         responseContainerEl.innerHTML = "<h1>" + searchTerm + "</h1>"
          document.querySelector('#date').innerHTML = date
-         document.querySelector('#temp-text').innerHTML = '<h2>' + response.main.temp + ' C </h2>';
+         document.querySelector('#temp-text').innerHTML = '<h2>' + response.main.temp + ' F </h2>';
          document.querySelector('#humidity').innerHTML = '<h4> Humidity : ' + response.main.humidity + '</h4>'
          document.querySelector('#wind').innerHTML = '<h4> Wind Speed : ' + response.wind.speed + '</h4>'
         var lon = response.coord.lon
