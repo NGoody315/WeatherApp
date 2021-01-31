@@ -81,15 +81,13 @@ function getFiveDay () {
             
             console.log(data);
             for(var i = 1; i < 6; i++) {
-                // var date = new Date (data.daily.dt*1000)
+
                 var date1 = new Date(data.daily[1].dt*1000);
                 var date2 = new Date(data.daily[2].dt*1000);
                 console.log(date2)
                 var date3 = new Date(data.daily[3].dt*1000);
                 var date4 = new Date(data.daily[4].dt*1000);
                 var date5 = new Date(data.daily[5].dt*1000);
-            
-            // document.querySelector('#date').innerHTML = "<h2>" + date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear() + "</h2>"
             
             document.querySelector('#card1-date').innerHTML = "<h6>" + (date1.getMonth() + 1) + '/' + date1.getDate() + '/' + date1.getFullYear() + "</h6>"
             document.querySelector('#card1-text').innerHTML = "<p>Humidity : " + data.daily[1].humidity + "</br> Temp : " + data.daily[1].temp.day + " F</p>"
