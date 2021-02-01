@@ -3,18 +3,28 @@ var previousSearches = document.getElementById('list-past-search');
 var searchBtn = document.getElementById("btn");
 const searchInput = document.getElementById("searchTerm")
 const searchText = document.getElementById("text")
-const storedInput = localStorage.getItem('searchInput')
-const dataStore = []
+const storedInput = localStorage.getItem('searchHistory')
+
 //event listeners
 searchBtn.addEventListener("click", getTotalWeather)
 searchInput.addEventListener('input', letter =>{
     searchText.textContent=letter.target.value
 })
 
+//Add Search History
+function saveToLocalStorage (){
+    localStorage.setItem('searchHistory', searchText.textContent)
+}
+
+if(storedInput) {
+    searchText.textContent = storedInput
+}
+
 //All Functions
 function getTotalWeather (){
     getFiveDay();
     getWeather();
+    saveToLocalStorage();
 }
 
 //Get Text Weather
@@ -59,16 +69,6 @@ function getWeather() {
 
         })
 }
-
-//Make History Search List
-// function pastSearches () {
-//     localStorage.setItem("pastSearch", json.stringify(searchInput))
-// }
-
-// //Pull History Search
-// function getSearches () {
-//     dataStore = json.parse(localStorage.getItem("pastSearch", searchInput))
-// }
 
 //Get Five Day Forecast
 function getFiveDay () {
