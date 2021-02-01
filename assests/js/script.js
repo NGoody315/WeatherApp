@@ -3,6 +3,7 @@ var previousSearches = document.getElementById('list-past-search');
 var searchBtn = document.getElementById("btn");
 const searchInput = document.getElementById("searchTerm")
 const searchText = document.getElementById("text")
+const storedInput = localStorage.getItem('searchInput')
 //event listeners
 searchBtn.addEventListener("click", getTotalWeather)
 searchInput.addEventListener('input', letter =>{
