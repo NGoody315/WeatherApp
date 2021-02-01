@@ -4,6 +4,7 @@ var searchBtn = document.getElementById("btn");
 const searchInput = document.getElementById("searchTerm")
 const searchText = document.getElementById("text")
 const storedInput = localStorage.getItem('searchInput')
+const dataStore = []
 //event listeners
 searchBtn.addEventListener("click", getTotalWeather)
 searchInput.addEventListener('input', letter =>{
@@ -14,7 +15,6 @@ searchInput.addEventListener('input', letter =>{
 function getTotalWeather (){
     getFiveDay();
     getWeather();
-    pastSearches();
 }
 
 //Get Text Weather
@@ -27,8 +27,14 @@ function getWeather() {
         return response.json();
     })
     .then(function(response){
-        
+        console.log(response)
         var date = new Date (response.dt*1000)
+
+        var mainIcon = response.weather[0].icon;
+        var currentIcon = "http://openweathermap.org/img/wn/" + mainIcon + ".png";
+            $('#main-img').attr('src', currentIcon)
+            document.querySelector('#main-img').innerHTML = "<img>" + currentIcon + "</img>"
+
         var responseContainerEl = document.querySelector("#city-name");
         responseContainerEl.innerHTML = "<h1>" + searchTerm + "</h1>"
 
@@ -55,9 +61,14 @@ function getWeather() {
 }
 
 //Make History Search List
-function pastSearches () {
-    localStorage.setItem("pastSearch", searchText.textContent)
-}
+// function pastSearches () {
+//     localStorage.setItem("pastSearch", json.stringify(searchInput))
+// }
+
+// //Pull History Search
+// function getSearches () {
+//     dataStore = json.parse(localStorage.getItem("pastSearch", searchInput))
+// }
 
 //Get Five Day Forecast
 function getFiveDay () {
@@ -83,40 +94,57 @@ function getFiveDay () {
             console.log(data);
             for(var i = 1; i < 6; i++) {
 
+                var dayOneIcon = data.daily[1].weather[0].icon;
+                var iconDay1 = "http://openweathermap.org/img/wn/" + dayOneIcon + ".png";
+                $('#card1-img').attr('src', iconDay1)
+
+                var dayTwoIcon = data.daily[2].weather[0].icon;
+                var iconDay2= "http://openweathermap.org/img/wn/" + dayTwoIcon + ".png";
+                $('#card2-img').attr('src', iconDay2)
+
+                var dayThreeIcon = data.daily[3].weather[0].icon;
+                var iconDay3= "http://openweathermap.org/img/wn/" + dayThreeIcon + ".png";
+                $('#card3-img').attr('src', iconDay3)
+
+                var dayFourIcon = data.daily[4].weather[0].icon;
+                var iconDay4= "http://openweathermap.org/img/wn/" + dayFourIcon + ".png";
+                $('#card4-img').attr('src', iconDay4)
+
+                var dayFiveIcon = data.daily[5].weather[0].icon;
+                var iconDay5= "http://openweathermap.org/img/wn/" + dayFiveIcon + ".png";
+                $('#card5-img').attr('src', iconDay5)
+
+
                 var date1 = new Date(data.daily[1].dt*1000);
                 var date2 = new Date(data.daily[2].dt*1000);
                 console.log(date2)
                 var date3 = new Date(data.daily[3].dt*1000);
                 var date4 = new Date(data.daily[4].dt*1000);
                 var date5 = new Date(data.daily[5].dt*1000);
+
             
             document.querySelector('#card1-date').innerHTML = "<h6>" + (date1.getMonth() + 1) + '/' + date1.getDate() + '/' + date1.getFullYear() + "</h6>"
             document.querySelector('#card1-text').innerHTML = "<p>Humidity : " + data.daily[1].humidity + "</br> Temp : " + data.daily[1].temp.day + " F</p>"
+            document.querySelector('#card1-img').innerHTML = "<img>" + iconDay1 + "</img>"
 
             document.querySelector('#card2-date').innerHTML = "<h6>" + (date2.getMonth() + 1) + '/' + date2.getDate() + '/' + date2.getFullYear() + "</h6>"
             document.querySelector('#card2-text').innerHTML = "<p>Humidity : " + data.daily[2].humidity + "</br> Temp : " + data.daily[2].temp.day + " F</p>"
+            document.querySelector('#card2-img').innerHTML = "<img>" + iconDay2 + "</img>"
 
             document.querySelector('#card3-date').innerHTML = "<h6>" + (date3.getMonth() +1) + '/' + date3.getDate() + '/' + date3.getFullYear() + "</h6>"
             document.querySelector('#card3-text').innerHTML = "<p>Humidity : " + data.daily[3].humidity + "</br> Temp : " + data.daily[3].temp.day + " F</p>"
+            document.querySelector('#card3-img').innerHTML = "<img>" + iconDay3 + "</img>"
 
             document.querySelector('#card4-date').innerHTML = "<h6>" + (date4.getMonth() +1) + '/' + date4.getDate() + '/' + date4.getFullYear() + "</h6>"
             document.querySelector('#card4-text').innerHTML = "<p>Humidity : " + data.daily[4].humidity + "</br> Temp : " + data.daily[4].temp.day + " F</p>"
+            document.querySelector('#card4-img').innerHTML = "<img>" + iconDay4 + "</img>"
 
             document.querySelector('#card5-date').innerHTML = "<h6>" + (date5.getMonth() +1) + '/' + date5.getDate() + '/' + date5.getFullYear() + "</h6>"
             document.querySelector('#card5-text').innerHTML = "<p>Humidity : " + data.daily[5].humidity + "</br> Temp : " + data.daily[5].temp.day + " F</p>"
+            document.querySelector('#card5-img').innerHTML = "<img>" + iconDay5 + "</img>"
 
         }
     })
 }
     
 
-//Local Storage
-// function getPastSearches (){
-//     for (var i=0; i < 8; i++) {
-//         var listItems = document.createElement('div')
-//         listItems.classList.add('past-search')
-//         listItems.innerHTML = i
-//         previousSearches.appendChild(listItems)
-//     }
-
-// }
