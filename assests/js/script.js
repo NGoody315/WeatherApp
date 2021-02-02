@@ -30,7 +30,7 @@ function getTotalWeather (){
 //Get Text Weather
 function getWeather() {
     var searchTerm = document.querySelector("#searchTerm").value;
-    var apiUrl = 'http://api.openweathermap.org/data/2.5/weather?q=' + searchTerm + '&units=Imperial&appid=c181cbcbd0af0c6eef9a97496c761d1b';
+    var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + searchTerm + '&units=Imperial&appid=c181cbcbd0af0c6eef9a97496c761d1b';
 
     fetch (apiUrl)
     .then(function(response){
@@ -41,7 +41,7 @@ function getWeather() {
         var date = new Date (response.dt*1000)
 
         var mainIcon = response.weather[0].icon;
-        var currentIcon = "http://openweathermap.org/img/wn/" + mainIcon + ".png";
+        var currentIcon = "https://openweathermap.org/img/wn/" + mainIcon + ".png";
             $('#main-img').attr('src', currentIcon)
             document.querySelector('#main-img').innerHTML = "<img>" + currentIcon + "</img>"
 
@@ -73,7 +73,7 @@ function getWeather() {
 //Get Five Day Forecast
 function getFiveDay () {
     var searchTerm = document.querySelector("#searchTerm").value;
-    var apiUrl = 'http://api.openweathermap.org/data/2.5/weather?q=' + searchTerm + '&units=Imperial&appid=c181cbcbd0af0c6eef9a97496c761d1b';
+    var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + searchTerm + '&units=Imperial&appid=c181cbcbd0af0c6eef9a97496c761d1b';
 
     fetch (apiUrl)
     .then(function(response){
@@ -95,23 +95,23 @@ function getFiveDay () {
             for(var i = 1; i < 6; i++) {
 
                 var dayOneIcon = data.daily[1].weather[0].icon;
-                var iconDay1 = "http://openweathermap.org/img/wn/" + dayOneIcon + ".png";
+                var iconDay1 = "https://openweathermap.org/img/wn/" + dayOneIcon + ".png";
                 $('#card1-img').attr('src', iconDay1)
 
                 var dayTwoIcon = data.daily[2].weather[0].icon;
-                var iconDay2= "http://openweathermap.org/img/wn/" + dayTwoIcon + ".png";
+                var iconDay2= "https://openweathermap.org/img/wn/" + dayTwoIcon + ".png";
                 $('#card2-img').attr('src', iconDay2)
 
                 var dayThreeIcon = data.daily[3].weather[0].icon;
-                var iconDay3= "http://openweathermap.org/img/wn/" + dayThreeIcon + ".png";
+                var iconDay3= "https://openweathermap.org/img/wn/" + dayThreeIcon + ".png";
                 $('#card3-img').attr('src', iconDay3)
 
                 var dayFourIcon = data.daily[4].weather[0].icon;
-                var iconDay4= "http://openweathermap.org/img/wn/" + dayFourIcon + ".png";
+                var iconDay4= "https://openweathermap.org/img/wn/" + dayFourIcon + ".png";
                 $('#card4-img').attr('src', iconDay4)
 
                 var dayFiveIcon = data.daily[5].weather[0].icon;
-                var iconDay5= "http://openweathermap.org/img/wn/" + dayFiveIcon + ".png";
+                var iconDay5= "https://openweathermap.org/img/wn/" + dayFiveIcon + ".png";
                 $('#card5-img').attr('src', iconDay5)
 
 
